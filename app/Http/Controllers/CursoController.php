@@ -17,6 +17,12 @@ class CursoController extends Controller
 
 /* siempre que paso un formulario, recupero los datos que ingreso con un Request $request */
 public function nuevo(Request $request){
+
+  $request->validate([
+    'nombre'=>'required',
+    'descripcion'=>'required',
+    'categoria'=>'required'
+  ]);
   /* para guardar un registro les paso los datos a una variable y le digo que es una nueva
   instancia del controlador */
   $curso = new Curso();
@@ -36,6 +42,12 @@ public function editar (Curso $curso){
   return view('cursos.editar', compact('curso'));
 }
 public function modificar (Request $request, Curso $curso){
+  $request->validate([
+    'nombre'=>'required',
+    'descripcion'=>'required',
+    'categoria'=>'required']);
+
+
  $curso->nombre = $request->nombre;
  $curso->descripcion = $request->descripcion;
  $curso->categoria = $request->categoria;
