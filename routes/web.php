@@ -17,7 +17,15 @@ use App\Http\Controllers\CursoController;
 
 Route::get('/', HomeController::class);
 
-Route::get('cursos', [CursoController::class,'index']);
-Route::get('cursos/create', [CursoController::class,'create']);
-Route::get('cursos/{curso}', [CursoController::class,'show']);
+Route::get('cursos', [CursoController::class,'index'])->name('index');
+Route::get('cursos/create', [CursoController::class,'create'])->name('crear');
+
+Route::post('cursos', [CursoController::class,'nuevo'])->name('nuevo');/* esta ruta es para crear un nuevo curso
+esta por el metodo post para que no se vea lo que se le pasa por la url */
+
+Route::get('cursos/{curso}', [CursoController::class,'show'])->name('show');
+
+Route::get('cursos/{curso}/editar', [CursoController::class,'editar'])->name('editar');
+
+Route::put('cursos/{curso}',[CursoController::class, 'modificar'])->name('modificar');
 
